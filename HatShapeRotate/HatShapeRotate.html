@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        #version 300 es
+        precision highp float;
+        precision highp int;
+
+        in vec4 vPosition;
+
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+
+        void main()
+        {
+            gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        #version 300 es
+        precision highp float;
+        precision highp int;
+
+        uniform vec4 fColor;
+        out vec4 fragmentColor;
+
+        void main()
+        {
+            fragmentColor = fColor;
+        }
+    </script>
+
+    <script type="text/javascript" src="Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="Common/initShaders.js"></script>
+    <script type="text/javascript" src="Common/MV.js"></script>
+    <script type="text/javascript" src="HatShapeRotate.js"></script>
+</head>
+
+<body>
+    <p> </p>
+
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <br />
+    <button id="rotateRight">Rotate Right</button>
+    <button id="rotateLeft">Rotate Left</button>
+    <br />
+    <button id="rotateUp">Rotate Up</button>
+    <button id="rotateDown">Rotate Down</button>
+    <br />
+    <button id="perspective" style="background: #ddd">Perspective View</button>
+    <button id="orthographic" style="background: #fff">Orthographic View</button>
+</body>
+
+</html>
